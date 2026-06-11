@@ -1,0 +1,20 @@
+version: 0.2
+ 
+phases:
+  pre_build:
+    commands:
+      - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 125773060242.dkr.ecr.eu-north-1.amazonaws.com
+ 
+  build:
+    commands:
+      - docker build -t ecs-demo .
+      - docker tag ecs-demo:latest 125773060242.dkr.ecr.eu-north-1.amazonaws.com/ecs-demo:latest
+ 
+  post_build:
+    commands:
+      - docker push 125773060242.dkr.ecr.eu-north-1.amazonaws.com/ecs-demo:latest
+      - printf '[{"name":"ecs-demo","imageUri":"%s"}]' 125773060242.dkr.ecr.eu-north-1.amazonaws.com/ecs-demo:latest > imagedefinitions.json
+ 
+artifacts:
+  files:
+    - imagedefinitions.json
