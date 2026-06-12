@@ -13,7 +13,7 @@ phases:
   post_build:
     commands:
       - docker push 125773060242.dkr.ecr.eu-north-1.amazonaws.com/ecs-demo:latest
-      - printf '[{"name":"ecs-demo","imageUri":"%s"}]' 125773060242.dkr.ecr.eu-north-1.amazonaws.com/ecs-demo:latest > imagedefinitions.json
+      - printf '[{"name":"ecs-demo","imageUri":"125773060242.dkr.ecr.eu-north-1.amazonaws.com/ecs-demo:latest"}]' > imagedefinitions.json
  
 artifacts:
   files:
