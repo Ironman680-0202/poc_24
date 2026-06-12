@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
  
 app.get("/", (req, res) => {
-    res.send("Application deployed successfully on ECS Fargate");
+    res.send("Application deployed successfully on ECS Fargate version 2");
 });
  
 app.get("/health", (req, res) => {
@@ -11,5 +11,5 @@ app.get("/health", (req, res) => {
 });
  
 app.listen(3000, () => {
-    console.log("Server running on port 3000 version 2");
+    console.log("Server running on port 3000");
 });
